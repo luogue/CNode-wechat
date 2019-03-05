@@ -1,0 +1,27 @@
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+
+<template is="loading" wx:if="{{ topics.length === 0 }}" />
+<view
+  wx:for="{{ topics }}"
+  wx:for-index="idx"
+  wx:for-item="topic"
+  wx:key="idx"
+  data-topic="{{ topic }}"
+  bindtap="getTopic"
+  class="topic-wrapper">
+  <view class="topic-header">
+    <text class="topic-title">{{ topic.title }}</text>
+  </view>
+  <view class="topic-info">
+    <view class="issuer-wrapper">
+      <image src="{{ topic.author.avatar_url }}" lazy-load="true"></image>
+      <text class="isssue-info">
+        <text class="author-name">{{ topic.author.loginname }}</text>
+      </text>
+    </view>
+    <view class="reply-wrapper">
+      <text class="last-reply">更新于{{ public.countTime(topic.last_reply_at) }}</text>
+    </view>
+  </view>
+</view>

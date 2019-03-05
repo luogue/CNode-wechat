@@ -1,0 +1,16 @@
+.radio-group {
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.radio-group radio {
+  vertical-align: 2px;
+}
+.title, .content {
+  margin-top: 50rpx;
+  margin: 50rpx 50rpx 0;
+  border-bottom: 1px solid #EEE;
+}
+button {
+  margin: 100rpx 50rpx 0;
+}

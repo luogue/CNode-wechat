@@ -1,0 +1,14 @@
+<!-- 全屏加载 -->
+<template name="loading">
+  <view class="loading">
+    <image src="../../images/logo.jpg" mode="widthFix" class="" />
+    <text>加载中...</text>
+  </view>
+</template>
+
+<!-- 居中提示 -->
+<template name="notice" hidden="{{ expiration }}">
+  <view class="public-notice">
+    <text>{{ text }}</text>
+  </view>
+</template>

@@ -1,0 +1,84 @@
+// 计算tabName
+function getTabName (tab) {
+  switch (tab) {
+    case 'top':
+      return {
+        name: '置顶',
+        color: '#80BD01'
+      }
+    case 'good':
+      return {
+        name: '精品',
+        color: '#E74C3C'
+      }
+    case 'share':
+      return {
+        name: '分享',
+        color: '#1ABC9C'
+      }
+    case 'ask':
+      return {
+        name: '问答',
+        color: '#3498DB'
+      }
+    case 'job':
+      return {
+        name: '招聘',
+        color: '#9B59B6'
+      }
+    case 'dev': 
+      return {
+        name: '测试',
+        color: '#866E4F'
+      }
+    default:
+      return {
+        name: '缺失',
+        color: '#7CA6B4'
+      }
+  }
+}
+
+// 计算时间
+function countTime (date) {
+  // 获取当前时间
+  // var now = new Date()
+  var now = getDate()
+  now = now.getTime()
+  // 获取目的时间
+  var targetTime = Date.parse(date)
+  // 计算时间差值
+  var differenceTime = now - targetTime
+  // 创建存储计算结果的变量, 以便避免多次访问item.createTime属性, 优化性能
+  var time, floor = Math.floor
+  // 计算时间
+  if (differenceTime * 3.1710 * 0.00000000001 >= 1) {
+    time = floor(differenceTime * 3.1710 * 0.00000000001) + '年前'
+  } else if ((differenceTime * 1.6534 * 0.000000001 / 4) >= 1) {
+    time = floor(differenceTime * 1.6534 * 0.000000001 / 4) + '月前'
+  } else if (differenceTime * 1.6534 * 0.000000001 >= 1) {
+    time = floor(differenceTime * 1.6534 * 0.000000001) + '周前'
+  } else if (differenceTime * 1.1574 * 0.00000001 >= 1) {
+    time = floor(differenceTime * 1.1574 * 0.00000001) + '天前'
+  } else if (differenceTime * 2.7778 * 0.0000001 >= 1) {
+    time = floor(differenceTime * 2.7778 * 0.0000001) + '小时前'
+  } else if (differenceTime * 0.0000167 >= 1) {
+    time = floor(differenceTime * 0.0000167) + '分钟前'
+  } else if (differenceTime * 0.001 >= 1) {
+    time = floor(differenceTime * 0.001) + '秒前'
+  } else {
+    time = '刚刚'
+  }
+  return time
+}
+
+// 判断是否在数组中
+function isInArray (list, item) {
+  return list.indexOf(item) > -1 ? true : false
+}
+
+module.exports = {
+  getTabName: getTabName,
+  countTime: countTime,
+  isInArray: isInArray
+}

@@ -1,0 +1,103 @@
+/* pages/home/home.wxss */
+/* 头部tab */
+.tab-wrapper {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-grow: 1;
+  color: #FFF;
+  background-color: #444;
+}
+
+.tab-wrapper text {
+  padding: 15rpx 20rpx;
+}
+
+/* 主题列表 */
+.topic-list {
+  margin-top: 100rpx;
+  height: 100%;
+  overflow: scroll;
+}
+scroll-view {
+  height: 100%;
+}
+
+/* 主题 */
+.topic-wrapper {
+  padding: 30rpx 20rpx;
+  border-bottom: 1px solid #D5DBDB;
+}
+.topic-header {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: green;
+}
+.label {
+  display: inline-block;
+  padding: 10rpx;
+  height: 30rpx;
+  vertical-align: 0;
+  line-height: 10rpx;
+  color: #FFF;
+  font-size: 22rpx;
+  border-radius: 10rpx;
+}
+.topic-title {
+  width: 100%;
+  margin-left: 20rpx;
+}
+.topic-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50rpx;
+}
+
+.topic-info .issuer-wrapper {
+  display: flex;
+  width: 400rpx;
+}
+.topic-info .issuer-wrapper image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;  
+}
+.isssue-info {
+  margin-left: 30rpx;
+}
+.isssue-info text {
+  display: block;
+}
+.isssue-info .author-name {
+  color: #666;
+}
+.isssue-info .create-time {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #B7B7B7;
+}
+
+.reply-wrapper > text {
+  display: block;
+  font-size: 24rpx;
+  text-align: right;
+}
+.num-count .reply-count {
+  color: #AB78C4;
+}
+.num-count .num-separator {
+  color: #8F338F;
+}
+.num-count .visit-count {
+  color: #B4B4B4;
+}
+.last-reply {
+  margin-top: 10rpx;
+  color: #B4B4B4;
+}

@@ -1,0 +1,101 @@
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<template is="loading" wx:if="{{ !topic }}" />
+<view id="container">
+  <view class="topic-title">{{ topic.title }}</view>
+    <view class="topic-info">
+      <view class="issuer-wrapper">
+        <image src="{{ topic.author.avatar_url }}" lazy-load="true"></image>
+        <text class="isssue-info">
+          <text class="author-name">{{ topic.author.loginname }}</text>
+          <text class="create-time">发布于{{ public.countTime(topic.create_at) }}</text>
+        </text>
+      </view>
+      <view class="reply-wrapper">
+        <text class="num-count">
+          <text class="topic-reply-count">{{ topic.reply_count }}</text>
+          <text class="num-separator"> / </text>
+          <text class="visit-count">{{ topic.visit_count }}</text>
+        </text>
+        <text class="last-reply">更新于{{ public.countTime(topic.last_reply_at) }}</text>
+        <text data-id="{{ topic.id }}" class="de-collect" wx:if="{{ isCollected }}" bindtap="deCollect">
+          <text class="iconfont icon-star"></text>
+          <text>取消收藏</text>
+        </text>
+        <text data-id="{{ topic.id }}" class="collect" wx:else bindtap="collect">
+          <text class="iconfont icon-star"></text>
+          <text>收藏</text>
+        </text>
+      </view>
+    </view>
+    <!-- markdown插件 -->
+    <template is="wxParse" data="{{ wxParseData: content.nodes }}" /> 
+</view>
+<view class="reply-count">{{ topic.reply_count }}条评论</view>
+<view class="replies">
+  <view wx:for="{{ topic.replies }}" wx:key="index" class="reply-item-box">
+    <view class="reply-item">
+      <view class="issuer-wrapper">
+        <image src="{{ item.author.avatar_url }}" lazy-load="true"></image>
+        <text class="isssue-info">
+          <text class="author-name">{{ item.author.loginname }}</text>
+          <text class="create-time">发布于{{ public.countTime(item.create_at) }}</text>
+        </text>
+      </view>
+      <view class="reply-operation">
+        <view class="num-count">
+          <text
+            class="iconfont icon-like-b"
+            data-payload="{{ item }}"
+            bindtap="agree"
+            style="color: {{ public.isInArray(item.ups, userInfo.id) ? 'orange' : '#333' }}">
+          </text>
+          <text class="visit-count">{{ item.ups.length }} 赞</text>
+        </view>
+        <view class="comment-wrapper">
+          <text class="iconfont icon-pinglun"></text>
+          <text class="comment" data-item="{{ item }}" bindtap="replyOther">评论</text>
+        </view>
+      </view>
+    </view>
+    <!-- 富文本渲染 -->
+    <view
+      wx:for="{{ replyTemArray }}"
+      wx:for-index="replyIndex"
+      wx:for-item="reply"
+      wx:key="replyIndex"
+      wx:if="{{ replyIndex === index }}"
+      class="reply">
+      <template is="wxParse" data="{{ wxParseData: reply }}" />
+    </view>
+  </view>
+  <form bindsubmit="reply" class="my-reply" hidden="{{ isReplyComment }}" wx:if="{{ topic }}">
+    <textarea
+      name="content"
+      maxlength="-1"
+      fixed="true"
+      bindfocus="setTextarea"
+      bindblur="setTextarea"
+      value="{{ defaultContent }}"
+      style="height: {{ focus ? '300rpx' : '60rpx' }}"
+      placeholder="评论点什么吧，不支持markdown语法哟" />
+    <button formType="submit">回复</button>
+  </form>
+  <form bindsubmit="replyComment" class="my-reply" hidden="{{ !isReplyComment }}" wx:if="{{ topic }}">
+    <textarea
+      name="comment"
+      maxlength="-1"
+      fixed="true"
+      bindfocus="setTextarea"
+      bindblur="setTextarea"
+      value="{{ comment }}"
+      style="height: {{ focus ? '300rpx' : '60rpx' }}"
+      placeholder="评论点什么吧，不支持markdown语法哟" />
+    <div class="button-wrapper">
+      <button bindtap="cancel" class="cancel">取消</button>
+      <button formType="submit">回复</button>
+    </div>
+  </form>
+</view>

@@ -1,0 +1,18 @@
+<import src="../../components/public.wxml" />
+
+<template is="notice" data="{{ text: text, expiration: expiration }}" wx:if="{{ expiration }}" />
+<form bindsubmit="issue">
+  <radio-group name="type" class="radio-group">
+    <label class="radio" wx:for="{{ types }}" wx:key="index">
+      <radio value="{{ item.value }}" checked="{{ item.checked }}" />
+      {{ item.name }}
+    </label>
+  </radio-group>
+  <view class="title">
+    <input name="title" placeholder="标题5个字符以上" focus></input>
+  </view>
+  <view class="content">
+    <textarea name="content" placeholder="内容不能为空"></textarea>
+  </view>
+  <button type="primary" form-type="submit">发布</button>
+</form>

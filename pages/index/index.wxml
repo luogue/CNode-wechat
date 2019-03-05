@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <button bindtap="click">点击</button>
+  {{ wxs.getMax(list) }}
+  <text>{{ msg }}</text>
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+
+<wxs module="wxs">
+  function getMax (list) {
+    var max = list[0]
+    for (var i = 0; i < list.length; i++) {
+      max = max < list[i] ? list[i] : max
+    }
+    return max
+  }
+  module.exports.getMax = getMax
+</wxs>

@@ -1,0 +1,54 @@
+/* 主题 */
+.topic-wrapper {
+  padding: 30rpx 20rpx;
+  border-bottom: 1px solid #D5DBDB;
+}
+.topic-header {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: green;
+}
+.topic-title {
+  width: 100%;
+  margin-left: 20rpx;
+}
+.reply-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50rpx;
+}
+
+.topic-info .issuer-wrapper {
+  display: flex;
+  align-items: center;
+  width: 400rpx;
+}
+.topic-info .issuer-wrapper image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;  
+}
+.isssue-info {
+  margin-left: 30rpx;
+}
+.isssue-info .author-name {
+  display: block;
+  color: #666;
+}
+.reply-wrapper > text {
+  display: block;
+  font-size: 24rpx;
+  text-align: right;
+}
+.last-reply {
+  color: #B4B4B4;
+}
+.reply {
+  margin-top: 30rpx;
+  padding: 30rpx;
+  background: #F2F2F2;
+  border-radius: 20rpx;
+  word-break: break-all;
+}

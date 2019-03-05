@@ -1,0 +1,16 @@
+<import src="../../components/public.wxml" />
+
+<template is="notice" data="{{ text: text, expiration: expiration }}" wx:if="{{ expiration }}" />
+<view>
+  <view class="warning">我给你们开通权限了，直接点击登录就行了</view>
+  <form bindsubmit="submit">
+    <view>
+      <input name="token" placeholder="Access Token" placeholder-class="placeholder" />
+    </view>
+    <view>
+      <button form-type="submit" hover-class="button-tap" disabled="{{ !enable }}">登录</button>
+    </view>
+  </form>
+  <view class="notice">由于小程序的限制，请自行在浏览器打开 CNode.js社区，登录后打开设置页面，即可看到个人的 Access Token 字符串。</view>
+  <navigator open-type="switchTab" url="../home/home">不想登录了，访问首页</navigator>
+</view>

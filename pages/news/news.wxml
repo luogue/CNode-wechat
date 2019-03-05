@@ -1,0 +1,41 @@
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<template is="loading" wx:if="{{ !news }}" />
+<view>
+  <view
+    wx:for="{{ news }}"
+    wx:key="index"
+    data-topic="{{ item }}"
+    bindtap="getTopic"
+    class="topic-wrapper">
+    <view class="topic-header" bindtap="getTopic">
+      <text class="topic-title">{{ item.topic.title }}</text>
+    </view>
+    <view class="topic-info">
+      <view class="reply-title">
+        <view class="issuer-wrapper">
+          <image src="{{ item.author.avatar_url }}" lazy-load="true"></image>
+          <text class="isssue-info">
+            <text class="author-name">{{ item.author.loginname }}</text>
+          </text>
+        </view>
+        <view class="reply-wrapper">
+          <text class="last-reply">回复于{{ public.countTime(item.reply.create_at) }}</text>
+        </view>
+      </view>
+      <!-- 富文本渲染 -->
+      <view
+        wx:for="{{ replyTemArray }}"
+        wx:for-index="replyIndex"
+        wx:for-item="reply"
+        wx:key="replyIndex"
+        wx:if="{{ replyIndex === index }}"
+        class="reply">
+        <template is="wxParse" data="{{ wxParseData: reply }}" />
+      </view>
+    </view>
+  </view>
+</view>
+<view></view>

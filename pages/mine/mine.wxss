@@ -1,0 +1,50 @@
+#user {
+  height: 100%;
+  background: #EEE;
+}
+#user-msg {
+  margin-top: 30rpx;
+  line-height: 100rpx;
+  text-align: center;
+  padding: 30rpx 20rpx 0;
+  background: #FFF;
+}
+.user-avatar {
+  margin: 0 auto;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  border: 1rpx solid #b7b7b7;
+  overflow: hidden;
+}
+.user-avatar img {
+  width: 100%;
+}
+.user-loginname {
+  font-size: 30rpx;
+  color: #FF830F;
+}
+.user-info {
+  display: flex;
+  justify-content: space-between;
+}
+.user-score {
+  color: #FF830F;
+}
+.user-ctime {
+  color: #CCC;
+}
+
+/* 按钮列表 */
+.button-wrapper {
+  margin-top: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #FFF;
+}
+.iconfont {
+  margin-left: 30rpx;
+}
+.label {
+  margin-left: 50rpx;
+}

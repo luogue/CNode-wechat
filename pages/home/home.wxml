@@ -1,0 +1,62 @@
+<!--pages/home/home.wxml-->
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+
+<view class="tab-wrapper" bindtap="printf">
+  <text
+    wx:for="{{ tabs }}"
+    wx:key="index"
+    open-type="redirect"
+    style="border-bottom: {{ tab === item.tab ? '5rpx solid #FFF' : '' }}"
+    data-item="{{ {...item, current: index } }}"
+    bindtap="selectTab"
+  >
+    {{ item.name }}
+  </text>
+</view>
+<swiper bindchange="changeTab" class="topic-list" current="{{ currentTabIndex }}">
+  <swiper-item wx:for="{{ tabs }}" wx:key="index">
+    <!-- 取消下拉刷新 bindscrolltoupper="pulldownUpate" -->
+    <scroll-view scroll-y bindscrolltolower="pullupUpdate">
+      <!-- <view hidden="{{ pulldownIsReady }}" class="loading-text">加载中...</view> -->
+      <template is="loading" wx:if="{{ topics[tab].list.length === 0 }}" />
+      <view
+        wx:for="{{ topics[item.tab].list }}"
+        wx:for-index="idx"
+        wx:for-item="topic"
+        wx:key="idx"
+        data-topic="{{ topic }}"
+        bindtap="getTopic"
+        class="topic-wrapper">
+        <view class="topic-header">
+          <text
+            style="background-color: {{ public.getTabName(topic.top ? 'top' : topic.tab).color }}"
+            class="label"
+          >
+            {{ public.getTabName(topic.top ? 'top' : topic.tab).name }}
+          </text>
+          <text class="topic-title">{{ topic.title }}</text>
+        </view>
+        <text>{{ topics['tab'] }}</text>
+        <view class="topic-info">
+          <view class="issuer-wrapper">
+            <image src="{{ topic.author.avatar_url }}" lazy-load="true"></image>
+            <text class="isssue-info">
+              <text class="author-name">{{ topic.author.loginname }}</text>
+              <text class="create-time">发布于{{ public.countTime(topic.create_at) }}</text>
+            </text>
+          </view>
+          <view class="reply-wrapper">
+            <text class="num-count">
+              <text class="reply-count">{{ topic.reply_count }}</text>
+              <text class="num-separator"> / </text>
+              <text class="visit-count">{{ topic.visit_count }}</text>
+            </text>
+            <text class="last-reply">更新于{{ public.countTime(topic.last_reply_at) }}</text>
+          </view>
+        </view>
+      </view>
+      <view hidden="{{ pullupIsReady }}" class="loading-text">加载中...</view>
+    </scroll-view>
+  </swiper-item>
+</swiper>

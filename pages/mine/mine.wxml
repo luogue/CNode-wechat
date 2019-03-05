@@ -1,0 +1,27 @@
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+
+<view id="user">
+  <view id="user-msg">
+    <view class="user-avatar">
+      <image src="{{ userInfo.avatar_url }}"  lazy-load="true"></image>
+    </view>
+    <text class="user-loginname">{{ userInfo.loginname }}</text>
+    <view class="user-info">
+      <text class="user-ctime">创建于{{ public.countTime(userInfo.create_at) }}</text>
+      <text class="user-score">{{ userInfo.score }} 积分</text>
+    </view>
+  </view>
+  <view class="button-wrapper" bindtap="showMyIssues">
+    <text class="iconfont icon-star"></text>
+    <text class="label">我的主题</text>
+  </view>
+  <view class="button-wrapper" bindtap="issue">
+    <text class="iconfont icon-star"></text>
+    <text class="label">发布主题</text>
+  </view>
+  <view class="button-wrapper" bindtap="logout">
+    <text class="iconfont icon-star"></text>
+    <text class="label">退出登录</text>
+  </view>
+</view>

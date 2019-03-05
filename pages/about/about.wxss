@@ -1,0 +1,12 @@
+#about {
+  padding: 20rpx;
+}
+.title {
+  margin-top: 50rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.value {
+  margin-top: 10px;
+  font-size: 24rpx;
+}

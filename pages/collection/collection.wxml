@@ -1,0 +1,43 @@
+<import src="../../components/public.wxml" />
+<wxs src="../../components/public.wxs" module="public"></wxs>
+
+<view
+  wx:for="{{ collections }}"
+  wx:for-index="idx"
+  wx:for-item="topic"
+  wx:key="idx"
+  data-topic="{{ topic }}"
+  bindtap="getTopic"
+  class="topic-wrapper">
+  <view class="topic-header">
+    <text
+      style="background-color: {{ public.getTabName(topic.top ? 'top' : topic.tab).color }}"
+      class="label"
+    >
+      {{ public.getTabName(topic.top ? 'top' : topic.tab).name }}
+    </text>
+    <text class="topic-title">{{ topic.title }}</text>
+  </view>
+  <text>{{ topics['tab'] }}</text>
+  <view class="topic-info">
+    <view class="issuer-wrapper">
+      <image src="{{ topic.author.avatar_url }}" lazy-load="true"></image>
+      <text class="isssue-info">
+        <text class="author-name">{{ topic.author.loginname }}</text>
+        <text class="create-time">发布于{{ public.countTime(topic.create_at) }}</text>
+      </text>
+    </view>
+    <view class="reply-wrapper">
+      <text class="num-count">
+        <text class="reply-count">{{ topic.reply_count }}</text>
+        <text class="num-separator"> / </text>
+        <text class="visit-count">{{ topic.visit_count }}</text>
+      </text>
+      <text class="last-reply">更新于{{ public.countTime(topic.last_reply_at) }}</text>
+      <text data-id="{{ topic.id }}" class="de-collect" catchtap="deCollect">
+        <text class="iconfont icon-star"></text>
+        <text>取消收藏</text>
+      </text>
+    </view>
+  </view>
+</view>

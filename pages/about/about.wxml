@@ -1,0 +1,4 @@
+<view id="about">
+  <view class="title">关于登录</view>
+  <view class="value">由于小程序的限制，请自行在浏览器打开 CNode.js社区，登录后打开设置页面，即可看到个人的 Access Token 字符串。</view>
+</view>
